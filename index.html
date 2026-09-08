@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>個人作品集 | 大學專題展示</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- 導覽列 -->
+  <header class="navbar">
+    <div class="logo">MyPortfolio</div>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="#about">關於我</a></li>
+        <li><a href="#projects">專題成果</a></li>
+        <li><a href="#skills">專業技能</a></li>
+        <li><a href="#contact">聯絡方式</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- 主視覺 / 個人簡介 -->
+  <section id="about" class="hero">
+    <div class="hero-content">
+      <h1>你好，我是 <span class="highlight">[您的姓名]</span></h1>
+      <p class="subtitle">大學四年專題成果與個人 IP 展示</p>
+      <p class="description">熱愛技術與創新，專注於解決實際問題。這裡記錄了我大學期間從基礎到進階的各項實作專案與畢業專題。</p>
+      <a href="#projects" class="btn">瀏覽專題</a>
+    </div>
+  </section>
+
+  <!-- 專題成果展示 -->
+  <section id="projects" class="projects-section">
+    <h2 class="section-title">專題實作成果</h2>
+    
+    <!-- 分類篩選按鈕 -->
+    <div class="filter-buttons">
+      <button class="filter-btn active" data-filter="all">全部</button>
+      <button class="filter-btn" data-filter="grad">畢業專題</button>
+      <button class="filter-btn" data-filter="web">網頁開發</button>
+      <button class="filter-btn" data-filter="app">應用程式/系統</button>
+    </div>
+
+    <div class="projects-grid">
+      
+      <!-- 專案 1：大四畢業專題 -->
+      <div class="project-card" data-category="grad">
+        <div class="project-tag">畢業專題</div>
+        <h3>AI 智慧系統與應用</h3>
+        <p class="project-year">大四 (2025 - 2026)</p>
+        <p class="project-desc">結合深度學習與前端介面的系統，解決特定領域的自動化與決策問題。</p>
+        <div class="tech-stack">
+          <span>Python</span>
+          <span>Vue.js</span>
+          <span>FastAPI</span>
+        </div>
+        <div class="project-links">
+          <a href="#" target="_blank"><i class="fab fa-github"></i> 程式碼</a>
+          <a href="#" target="_blank"><i class="fas fa-external-link-alt"></i> 線上展示</a>
+        </div>
+      </div>
+
+      <!-- 專案 2：大三專題 -->
+      <div class="project-card" data-category="web">
+        <div class="project-tag">網頁開發</div>
+        <h3>全端電商/社群平台</h3>
+        <p class="project-year">大三 (2024 - 2025)</p>
+        <p class="project-desc">實作會員系統、購物車、金流介接與資料庫最佳化設計。</p>
+        <div class="tech-stack">
+          <span>React</span>
+          <span>Node.js</span>
+          <span>MongoDB</span>
+        </div>
+        <div class="project-links">
+          <a href="#" target="_blank"><i class="fab fa-github"></i> 程式碼</a>
+        </div>
+      </div>
+
+      <!-- 專案 3：大二專題 -->
+      <div class="project-card" data-category="app">
+        <div class="project-tag">應用程式</div>
+        <h3>跨平台行動 App 開發</h3>
+        <p class="project-year">大二 (2023 - 2024)</p>
+        <p class="project-desc">專為校園生活設計的整合 App，包含課表管理與校園最新資訊推播。</p>
+        <div class="tech-stack">
+          <span>Flutter</span>
+          <span>Firebase</span>
+        </div>
+        <div class="project-links">
+          <a href="#" target="_blank"><i class="fab fa-github"></i> 程式碼</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 技能與歷程 -->
+  <section id="skills" class="skills-section">
+    <h2 class="section-title">專業技能</h2>
+    <div class="skills-container">
+      <div class="skill-category">
+        <h3>程式語言</h3>
+        <p>JavaScript / TypeScript, Python, C++ / Java</p>
+      </div>
+      <div class="skill-category">
+        <h3>網頁與前端</h3>
+        <p>HTML5, CSS3, SCSS, React / Vue.js, Tailwind CSS</p>
+      </div>
+      <div class="skill-category">
+        <h3>後端與資料庫</h3>
+        <p>Node.js, Express, Python FastAPI, MySQL, MongoDB</p>
+      </div>
+      <div class="skill-category">
+        <h3>開發工具</h3>
+        <p>Git / GitHub, Docker, VS Code, Postman</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 頁尾 / 聯絡資訊 -->
+  <footer id="contact">
+    <h2>聯絡我</h2>
+    <p>歡迎交流與合作！</p>
+    <div class="social-links">
+      <a href="mailto:your.email@example.com"><i class="fas fa-envelope"></i> Email</a>
+      <a href="https://github.com/yourusername" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+      <a href="https://linkedin.com/in/yourusername" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+    </div>
+    <p class="copyright">© 2026 [您的姓名]. All rights reserved.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
