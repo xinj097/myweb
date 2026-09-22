@@ -1,0 +1,97 @@
+/* 全域基礎設定 */
+
+{
+box-sizing: border-box;
+margin: 0;
+padding: 0;
+}
+
+body {
+font-family: "Microsoft JhengHei", "PingFang TC", sans-serif;
+background-color: #f0f2f5;
+color: #333;
+padding: 20px;
+}
+
+header {
+text-align: center;
+margin-bottom: 30px;
+}
+
+header h1 {
+color: #1a2a3a;
+font-size: 28px;
+margin-bottom: 8px;
+}
+
+header p {
+color: #666;
+font-size: 16px;
+}
+
+/* 網格排列 (展示 5 張圖片) */
+.gallery-container {
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+gap: 20px;
+max-width: 1200px;
+margin: 0 auto;
+}
+
+/* 個別圖片外卡片 */
+.gallery-item {
+display: block;
+width: 280px;
+background-color: #ffffff;
+border-radius: 12px;
+overflow: hidden;
+text-decoration: none;
+box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* 圖片外層容器 */
+.img-wrapper {
+width: 100%;
+height: 200px;
+overflow: hidden;
+}
+
+/* 圖片本體設定 */
+.img-wrapper img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+display: block;
+transition: transform 0.3s ease;
+}
+
+/* 定義滑鼠移過去時的 CSS 動畫（擺動/搖晃） */
+@keyframes shakeAnimation {
+0% { transform: scale(1.2) rotate(0deg); }
+25% { transform: scale(1.2) rotate(-5deg); }
+50% { transform: scale(1.2) rotate(5deg); }
+75% { transform: scale(1.2) rotate(-3deg); }
+100% { transform: scale(1.2) rotate(0deg); }
+}
+
+/* 當滑鼠移上去時：執行放大 + 擺動動畫 */
+.gallery-item:hover .img-wrapper img {
+animation: shakeAnimation 0.5s infinite ease-in-out;
+}
+
+/* 卡片整體微幅上升與陰影加深 */
+.gallery-item:hover {
+transform: translateY(-8px);
+box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+/* 圖片下方文字說明 */
+.caption {
+padding: 15px;
+text-align: center;
+color: #2c3e50;
+font-weight: bold;
+font-size: 16px;
+}
