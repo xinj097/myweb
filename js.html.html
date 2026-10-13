@@ -3,582 +3,604 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>喜迎新春特惠商城 - 迎春納福賀新年</title>
-    <!-- 引入 Google Fonts 與 FontAwesome 圖示 -->
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@600;900&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>🧨 喜慶迎新春 · 賀歲購物商城 🧧</title>
+    <!-- Tailwind CSS for modern responsive styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome for festive icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+    <!-- Google Fonts: Noto Sans TC -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        festiveRed: '#D32F2F',
+                        deepRed: '#990000',
+                        gold: '#FFD700',
+                        darkGold: '#CCA100',
+                        festiveYellow: '#FFF9C4'
+                    },
+                    fontFamily: {
+                        calligraphy: ['"Ma Shan Zheng"', 'cursive'],
+                        sans: ['"Noto Sans TC"', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        :root {
-            --primary-red: #d32f2f;
-            --dark-red: #8b0000;
-            --gold: #ffd700;
-            --light-gold: #fff3cd;
-            --bg-color: #fff9f0;
-            --text-color: #333333;
+        @keyframes floatGold {
+            0% { transform: translateY(0px) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-120px) rotate(360deg); opacity: 0; }
         }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Poppins', 'Noto Serif TC', serif;
+        @keyframes fireworkBurst {
+            0% { transform: scale(0.1); opacity: 1; }
+            50% { opacity: 1; }
+            100% { transform: scale(2.5); opacity: 0; }
         }
-
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            overflow-x: hidden;
-            position: relative;
+        @keyframes marquee {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
         }
-
-        /* 頂部新年橫幅 */
-        header {
-            background: linear-gradient(135deg, var(--dark-red), var(--primary-red));
-            color: white;
-            padding: 1.5rem 2rem;
-            box-shadow: 0 4px 15px rgba(139, 0, 0, 0.3);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 4px solid var(--gold);
+        .animate-marquee {
+            display: inline-block;
+            white-space: nowrap;
+            animation: marquee 20s linear infinite;
         }
-
-        .logo-area {
-            display: flex;
-            align-items: center;
-            gap: 15px;
+        .gold-gradient {
+            background: linear-gradient(135deg, #FFE066 0%, #FFC107 50%, #FF8F00 100%);
         }
-
-        .logo-area i {
-            font-size: 2.2rem;
-            color: var(--gold);
-            animation: pulse 2s infinite;
+        .red-gradient {
+            background: linear-gradient(135deg, #E53935 0%, #C62828 50%, #8E0000 100%);
         }
-
-        .logo-area h1 {
-            font-size: 1.8rem;
-            color: var(--gold);
-            font-weight: 900;
-            letter-spacing: 2px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        /* Custom scrollbar for cart and clean UI */
+        ::-webkit-scrollbar {
+            width: 8px;
         }
-
-        /* 購物車按鈕與酷炫動效 */
-        .cart-btn {
-            background: linear-gradient(135deg, #ffc107, #ff9800);
-            color: #8b0000;
-            border: 2px solid white;
-            padding: 0.6rem 1.2rem;
-            border-radius: 50px;
-            font-weight: 700;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            box-shadow: 0 4px 10px rgba(255, 193, 7, 0.4);
-            transition: all 0.3s ease;
-            position: relative;
+        ::-webkit-scrollbar-track {
+            background: #ffebee;
         }
-
-        .cart-btn:hover {
-            transform: scale(1.08);
-            box-shadow: 0 6px 15px rgba(255, 215, 0, 0.8);
-        }
-
-        .cart-count {
-            background-color: var(--dark-red);
-            color: white;
-            border-radius: 50%;
-            padding: 2px 8px;
-            font-size: 0.85rem;
-        }
-
-        /* 主視覺 Banner */
-        .hero {
-            text-align: center;
-            padding: 3rem 1rem;
-            background: radial-gradient(circle, #ffebee 0%, #fff9f0 80%);
-            border-bottom: 2px dashed #ffb74d;
-        }
-
-        .hero h2 {
-            font-size: 2.5rem;
-            color: var(--dark-red);
-            margin-bottom: 0.5rem;
-            font-weight: 900;
-        }
-
-        .hero p {
-            color: #d84315;
-            font-size: 1.1rem;
-            letter-spacing: 1px;
-        }
-
-        /* 商品列表區域 */
-        .container {
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 1rem;
-        }
-
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 2rem;
-        }
-
-        .product-card {
-            background: white;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.06);
-            border: 2px solid #ffe0b2;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .product-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 30px rgba(211, 47, 47, 0.15);
-            border-color: var(--gold);
-        }
-
-        .product-img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            background-color: #fff3e0;
-        }
-
-        .product-info {
-            padding: 1.2rem;
-            text-align: center;
-        }
-
-        .product-title {
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: #4e342e;
-            margin-bottom: 0.5rem;
-        }
-
-        .product-price {
-            color: var(--primary-red);
-            font-size: 1.3rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-        }
-
-        .buy-btn {
-            width: 100%;
-            background: linear-gradient(135deg, var(--primary-red), var(--dark-red));
-            color: white;
-            border: none;
-            padding: 0.8rem;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background 0.3s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-
-        .buy-btn:hover {
-            background: linear-gradient(135deg, #e53935, #c62828);
-        }
-
-        /* 購物車抽屜側邊欄 */
-        .cart-drawer {
-            position: fixed;
-            top: 0;
-            right: -400px;
-            width: 380px;
-            height: 100%;
-            background: white;
-            box-shadow: -5px 0 25px rgba(0,0,0,0.2);
-            z-index: 2000;
-            transition: right 0.4s cubic-bezier(0.1, 1, 0.1, 1);
-            display: flex;
-            flex-direction: column;
-            border-left: 5px solid var(--gold);
-        }
-
-        .cart-drawer.open {
-            right: 0;
-        }
-
-        .cart-header {
-            background: var(--dark-red);
-            color: var(--gold);
-            padding: 1.2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 1.2rem;
-            font-weight: 700;
-        }
-
-        .close-cart {
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
-        .cart-items {
-            flex: 1;
-            overflow-y: auto;
-            padding: 1rem;
-        }
-
-        .cart-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0.8rem 0;
-            border-bottom: 1px solid #eee;
-        }
-
-        .cart-item-info h4 {
-            font-size: 0.95rem;
-            color: #333;
-        }
-
-        .cart-item-info p {
-            color: var(--primary-red);
-            font-size: 0.9rem;
-            font-weight: 600;
-        }
-
-        .remove-btn {
-            background: #ffcdd2;
-            color: #c62828;
-            border: none;
-            padding: 4px 8px;
+        ::-webkit-scrollbar-thumb {
+            background: #ef5350;
             border-radius: 4px;
-            cursor: pointer;
-            font-size: 0.8rem;
-        }
-
-        .cart-footer {
-            padding: 1.2rem;
-            background: #fff9f0;
-            border-top: 1px solid #ffe0b2;
-        }
-
-        .total-price {
-            font-size: 1.1rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .checkout-btn {
-            width: 100%;
-            background: linear-gradient(135deg, #ffc107, #ff8f00);
-            color: var(--dark-red);
-            border: none;
-            padding: 0.9rem;
-            border-radius: 8px;
-            font-size: 1.1rem;
-            font-weight: 900;
-            cursor: pointer;
-            box-shadow: 0 4px 12px rgba(255, 152, 0, 0.4);
-            transition: all 0.3s;
-        }
-
-        .checkout-btn:hover {
-            transform: scale(1.03);
-            background: linear-gradient(135deg, #ffd54f, #ffb300);
-        }
-
-        /* 遮罩背景 */
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.5);
-            z-index: 1500;
-            display: none;
-        }
-
-        .overlay.active {
-            display: block;
-        }
-
-        /* 新年酷炫慶祝特效動畫 (金幣與紅包雨) */
-        .fx-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 3000;
-            overflow: hidden;
-            display: none;
-        }
-
-        .falling-item {
-            position: absolute;
-            top: -50px;
-            font-size: 2rem;
-            animation: fall linear forwards;
-        }
-
-        @keyframes fall {
-            0% {
-                transform: translateY(0) rotate(0deg);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(105vh) rotate(360deg);
-                opacity: 0.2;
-            }
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.15); }
-            100% { transform: scale(1); }
-        }
-
-        /* 提示通知 Banner */
-        .toast {
-            position: fixed;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%) translateY(100px);
-            background: var(--dark-red);
-            color: var(--gold);
-            padding: 12px 25px;
-            border-radius: 30px;
-            border: 2px solid var(--gold);
-            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
-            font-weight: 700;
-            z-index: 4000;
-            transition: transform 0.4s ease;
-        }
-
-        .toast.show {
-            transform: translateX(-50%) translateY(0);
         }
     </style>
 </head>
-<body>
+<body class="bg-[#FFF8E1] text-gray-800 font-sans min-h-screen flex flex-col selection:bg-red-500 selection:text-white relative overflow-x-hidden">
 
-    <!-- 頂部導航 -->
-    <header>
-        <div class="logo-area">
-            <i class="fa-solid fa-红包"></i> <!-- 若字型不支援可以換 lantern -->
-            <i class="fa-solid fa-firecracker"></i>
-            <h1>迎春納福賀新年商城</h1>
+    <canvas id="fireworksCanvas" class="fixed inset-0 pointer-events-none z-50"></canvas>
+
+    <div class="bg-deepRed text-gold py-2 px-4 overflow-hidden shadow-md text-sm font-bold border-b border-gold/30">
+        <div class="overflow-hidden whitespace-nowrap">
+            <span class="animate-marquee inline-block">
+                🎉 恭喜發財，新年快樂！ 🧨 滿額即享免運費與財神爺加持紅包抽獎！ 🧧 金蛇迎春，萬象更新，大吉大利！ 🍊 祝您新的一年財源滾滾、闔家安康！
+            </span>
         </div>
-        <button class="cart-btn" onclick="toggleCart()">
-            <i class="fa-solid fa-cart-shopping"></i> 購物車
-            <span class="cart-count" id="cartCount">0</span>
-        </button>
+    </div>
+
+    <header class="sticky top-0 z-40 bg-festiveRed/95 backdrop-blur-md shadow-xl border-b-4 border-gold">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-12 h-12 rounded-full gold-gradient flex items-center justify-center text-deepRed text-2xl shadow-lg animate-pulse">
+                    <i class="fa-solid fa-红包"></i>
+                </div>
+                <div>
+                    <h1 class="font-calligraphy text-3xl sm:text-4xl text-gold tracking-wide drop-shadow-md">迎春喜市</h1>
+                    <p class="text-xs text-festiveYellow tracking-widest hidden sm:block">FESTIVE NEW YEAR SHOP</p>
+                </div>
+            </div>
+            
+            <div class="flex items-center space-x-4">
+                <button onclick="triggerMassiveBlessing()" class="hidden md:flex items-center space-x-2 bg-gradient-to-r from-amber-400 to-yellow-500 text-deepRed px-4 py-2 rounded-full font-bold shadow-lg hover:from-amber-300 hover:to-yellow-400 transform hover:scale-105 transition active:scale-95 border border-yellow-200">
+                    <i class="fa-solid fa-dragon"></i>
+                    <span>全場賀歲祝福</span>
+                </button>
+
+                <button onclick="toggleCart()" class="relative bg-gold hover:bg-darkGold text-deepRed px-5 py-2.5 rounded-full font-bold shadow-lg flex items-center space-x-2 transition transform hover:scale-105 active:scale-95">
+                    <i class="fa-solid fa-cart-shopping text-lg"></i>
+                    <span class="hidden sm:inline">購物車</span>
+                    <span id="cartBadge" class="absolute -top-2 -right-2 bg-deepRed text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center shadow-md border-2 border-gold">0</span>
+                </button>
+            </div>
+        </div>
     </header>
 
-    <!-- 主視覺 Banner -->
-    <div class="hero">
-        <h2>🏮 恭喜發財．新春特惠 🏮</h2>
-        <p>全館限時特惠，下單即享新春開運紅包與金幣特效大放送！</p>
-    </div>
-
-    <!-- 商品列表 -->
-    <div class="container">
-        <div class="product-grid" id="productGrid">
-            <!-- 商品將由 JavaScript 動態帶入 -->
-        </div>
-    </div>
-
-    <!-- 購物車抽屜側邊欄 -->
-    <div class="overlay" id="overlay" onclick="toggleCart()"></div>
-    <div class="cart-drawer" id="cartDrawer">
-        <div class="cart-header">
-            <span><i class="fa-solid fa-bag-shopping"></i> 您的新春購物車</span>
-            <button class="close-cart" onclick="toggleCart()">&times;</button>
-        </div>
-        <div class="cart-items" id="cartItems">
-            <!-- 購物車內容 -->
-            <p style="text-align:center; color:#999; margin-top: 2rem;">購物車目前空空如也，快去挑選年貨吧！</p>
-        </div>
-        <div class="cart-footer">
-            <div class="total-price">
-                <span>總計金額：</span>
-                <span id="totalPrice" style="color: var(--primary-red);">NT$ 0</span>
+    <section class="relative bg-gradient-to-b from-deepRed to-festiveRed text-white py-12 px-4 shadow-2xl overflow-hidden">
+        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#FFD700_1px,transparent_1px)] [background-size:16px_16px]"></div>
+        <div class="max-w-5xl mx-auto text-center relative z-10">
+            <span class="inline-block bg-gold/20 text-gold border border-gold/40 px-4 py-1 rounded-full text-sm font-semibold mb-3 tracking-wider">
+                🏮 歲首迎春 · 鴻運當頭 🏮
+            </span>
+            <h2 class="font-calligraphy text-5xl sm:text-7xl text-gold mb-4 drop-shadow-[0_5px_5px_rgba(0,0,0,0.5)]">
+                福虎生風・金蛇賀歲
+            </h2>
+            <p class="text-festiveYellow text-lg sm:text-xl max-w-2xl mx-auto font-medium mb-8">
+                嚴選頂級年節伴手禮、吉祥春聯與開運好物，把福氣與財運帶回家！
+            </p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="#products" class="gold-gradient text-deepRed font-bold px-8 py-3 rounded-full shadow-lg hover:opacity-95 transform hover:-translate-y-0.5 transition">
+                    立即搶購好運 🧧
+                </a>
+                <button onclick="triggerMassiveBlessing()" class="bg-red-900/80 border-2 border-gold text-gold font-bold px-8 py-3 rounded-full shadow-lg hover:bg-red-900 transition">
+                    點燃新年煙火 ✨
+                </button>
             </div>
-            <button class="checkout-btn" onclick="checkout()">
-                <i class="fa-solid fa-gift"></i> 喜慶結帳 (點擊看特效)
+        </div>
+    </section>
+
+    <main id="products" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 flex-grow w-full">
+        <div class="flex flex-col md:flex-row justify-between items-center mb-8 border-b-2 border-amber-200 pb-4">
+            <div>
+                <h3 class="text-2xl sm:text-3xl font-bold text-deepRed flex items-center gap-2">
+                    <i class="fa-solid fa-gift text-festiveRed"></i> 賀歲特選好物
+                </h3>
+                <p class="text-gray-600 text-sm mt-1">點擊「加入購物車」體驗喜慶煙火與金幣噴發特效！</p>
+            </div>
+            
+            <!-- Category Filter Tabs -->
+            <div class="flex flex-wrap gap-2 mt-4 md:mt-0" id="filterContainer">
+                <button onclick="filterProducts('all')" class="filter-btn active-filter px-4 py-1.5 rounded-full text-sm font-bold bg-festiveRed text-white shadow transition">全部商品</button>
+                <button onclick="filterProducts('gift')" class="filter-btn px-4 py-1.5 rounded-full text-sm font-bold bg-white text-gray-700 hover:bg-red-100 shadow transition">喜慶禮盒</button>
+                <button onclick="filterProducts('decor')" class="filter-btn px-4 py-1.5 rounded-full text-sm font-bold bg-white text-gray-700 hover:bg-red-100 shadow transition">開運春聯</button>
+                <button onclick="filterProducts('snack')" class="filter-btn px-4 py-1.5 rounded-full text-sm font-bold bg-white text-gray-700 hover:bg-red-100 shadow transition">年節零食</button>
+            </div>
+        </div>
+
+        <!-- Product Grid -->
+        <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- Dynamically populated via JavaScript -->
+        </div>
+    </main>
+
+    <div id="cartOverlay" class="fixed inset-0 bg-black/50 z-50 hidden backdrop-blur-sm transition-opacity opacity-0" onclick="toggleCart()"></div>
+    
+    <aside id="cartSidebar" class="fixed top-0 right-0 w-full sm:w-96 h-full bg-white z-50 shadow-2xl transform translate-x-full transition-transform duration-300 flex flex-col">
+        <!-- Cart Header -->
+        <div class="bg-festiveRed text-white p-5 flex items-center justify-between border-b-4 border-gold">
+            <h3 class="font-bold text-xl flex items-center gap-2 text-gold">
+                <i class="fa-solid fa-bag-shopping"></i> 您的喜慶購物車
+            </h3>
+            <button onclick="toggleCart()" class="text-white hover:text-gold text-xl w-8 h-8 rounded-full flex items-center justify-center hover:bg-red-800 transition">
+                <i class="fa-solid fa-xmark"></i>
             </button>
         </div>
-    </div>
 
-    <!-- 新年特效容器 -->
-    <div class="fx-container" id="fxContainer"></div>
+        <!-- Cart Items Container -->
+        <div id="cartItemsList" class="flex-grow overflow-y-auto p-4 space-y-4 divide-y divide-gray-100">
+            <!-- Empty state default -->
+            <div class="text-center py-20 text-gray-400">
+                <i class="fa-solid fa-basket-shopping text-6xl mb-3 text-red-200"></i>
+                <p class="font-medium text-lg">購物車空空如也~</p>
+                <p class="text-sm mt-1">快挑選喜氣商品，迎接好運吧！</p>
+            </div>
+        </div>
 
-    <!-- 提示框 -->
-    <div class="toast" id="toast">已成功加入購物車！</div>
+        <!-- Cart Footer -->
+        <div class="p-5 bg-gray-50 border-t border-gray-200 shadow-inner">
+            <div class="space-y-2 mb-4">
+                <div class="flex justify-between text-sm text-gray-600">
+                    <span>商品總數</span>
+                    <span id="cartItemCount" class="font-bold">0 件</span>
+                </div>
+                <div class="flex justify-between text-sm text-gray-600">
+                    <span>新年免運優惠</span>
+                    <span class="text-green-600 font-bold">-$0 (已享免運)</span>
+                </div>
+                <div class="flex justify-between text-lg font-bold text-deepRed pt-2 border-t border-gray-200">
+                    <span>應付總金額</span>
+                    <span id="cartTotalPrice" class="text-2xl text-festiveRed">NT$ 0</span>
+                </div>
+            </div>
+
+            <button onclick="checkout()" class="w-full gold-gradient text-deepRed font-bold py-3.5 rounded-xl shadow-lg hover:opacity-90 transform active:scale-98 transition flex items-center justify-center gap-2 text-lg">
+                <i class="fa-solid fa-receipt"></i> 結帳迎好運 🧧
+            </button>
+        </div>
+    </aside>
+
+    <div id="toastContainer" class="fixed bottom-6 left-6 z-50 flex flex-col space-y-2 pointer-events-none"></div>
+
+    <footer class="bg-gray-900 text-amber-100 py-10 mt-auto border-t-4 border-gold">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
+            <div class="flex justify-center space-x-6 text-2xl text-gold">
+                <i class="fa-solid fa-lantern hover:scale-125 transition cursor-pointer"></i>
+                <i class="fa-solid fa-coins hover:scale-125 transition cursor-pointer"></i>
+                <i class="fa-solid fa-dragon hover:scale-125 transition cursor-pointer"></i>
+                <i class="fa-solid fa-gift hover:scale-125 transition cursor-pointer"></i>
+            </div>
+            <p class="font-calligraphy text-2xl text-gold">祝各位福虎生風、財源廣進、大吉大利！</p>
+            <p class="text-sm text-gray-400">&copy; 2026 迎春喜市賀歲購物商城. All Rights Reserved.</p>
+        </div>
+    </footer>
 
     <script>
-        // 商品資料
+        // Product Data with festive items
         const products = [
-            { id: 1, name: "富貴吉祥開運年菜組", price: 2888, img: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=500&q=80" },
-            { id: 2, name: "鴻運當頭特級烏魚子禮盒", price: 1688, img: "https://images.unsplash.com/photo-1541592106381-b31e9677c0e5?auto=format&fit=crop&w=500&q=80" },
-            { id: 3, name: "步步高昇手工干貝蘿蔔糕", price: 588, img: "https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=500&q=80" },
-            { id: 4, name: "迎春納福金箔高山茶禮盒", price: 1280, img: "https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&w=500&q=80" }
+            {
+                id: 1,
+                name: '富貴吉祥・頂級年節燕窩禮盒',
+                category: 'gift',
+                price: 2688,
+                image: 'https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&w=600&q=80',
+                tag: '熱銷人氣',
+                blessing: '大吉大利・福壽雙全'
+            },
+            {
+                id: 2,
+                name: '金蛇迎春・特選烏魚子手工禮盒',
+                category: 'gift',
+                price: 1888,
+                image: 'https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=600&q=80',
+                tag: '過年必備',
+                blessing: '年年有餘・富貴吉祥'
+            },
+            {
+                id: 3,
+                name: '喜慶臨門・精緻絨布燙金春聯組',
+                category: 'decor',
+                price: 368,
+                image: 'https://images.unsplash.com/photo-1543258103-a6dffc9d7d4c?auto=format&fit=crop&w=600&q=80',
+                tag: '限時特惠',
+                blessing: '招財進寶・鴻運當頭'
+            },
+            {
+                id: 4,
+                name: '財神駕到・開運金箔大紅燈籠',
+                category: 'decor',
+                price: 666,
+                image: 'https://images.unsplash.com/photo-1578632767115-351597cf2477?auto=format&fit=crop&w=600&q=80',
+                tag: '招財首選',
+                blessing: '出入平安・家宅平安'
+            },
+            {
+                id: 5,
+                name: '吉星高照・手作一口酥牛軋糖罐',
+                category: 'snack',
+                price: 520,
+                image: 'https://images.unsplash.com/photo-1582058091505-f87a2e55a40f?auto=format&fit=crop&w=600&q=80',
+                tag: '甜蜜過年',
+                blessing: '甜甜蜜蜜・好運相隨'
+            },
+            {
+                id: 6,
+                name: '花開富貴・嚴選頂級臺灣高山烏龍茶',
+                category: 'gift',
+                price: 1280,
+                image: 'https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&w=600&q=80',
+                tag: '品味茶香',
+                blessing: '茶香四溢・好運連連'
+            },
+            {
+                id: 7,
+                name: '鴻運當頭・開運紅包袋超值澎湃包',
+                category: 'decor',
+                price: 168,
+                image: 'https://images.unsplash.com/photo-1513258496099-48168024aec0?auto=format&fit=crop&w=600&q=80',
+                tag: '必備良品',
+                blessing: '金銀財寶・滾滾來'
+            },
+            {
+                id: 8,
+                name: '金玉滿堂・富貴堅果核桃禮盒',
+                category: 'snack',
+                price: 888,
+                image: 'https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&w=600&q=80',
+                tag: '健康美味',
+                blessing: '健康平安・闔家歡樂'
+            }
         ];
 
+        // Shopping cart array
         let cart = [];
 
-        // 初始化商品列表
-        function renderProducts() {
+        // DOM Loaded Init
+        document.addEventListener('DOMContentLoaded', () => {
+            renderProducts(products);
+            initFireworksCanvas();
+        });
+
+        // Render products into grid
+        function renderProducts(items) {
             const grid = document.getElementById('productGrid');
-            grid.innerHTML = products.map(p => `
-                <div class="product-card">
-                    <img src="${p.img}" alt="${p.name}" class="product-img">
-                    <div class="product-info">
-                        <h3 class="product-title">${p.name}</h3>
-                        <div class="product-price">NT$ ${p.price.toLocaleString()}</div>
-                        <button class="buy-btn" onclick="addToCart(${p.id})">
-                            <i class="fa-solid fa-cart-plus"></i> 加入購物車
-                        </button>
+            grid.innerHTML = '';
+
+            items.forEach(product => {
+                const card = document.createElement('div');
+                card.className = 'bg-white rounded-2xl shadow-lg overflow-hidden border-2 border-red-100 hover:border-gold transition-all duration-300 transform hover:-translate-y-1 flex flex-col justify-between group';
+                card.innerHTML = `
+                    <div class="relative overflow-hidden bg-red-50 aspect-4/3">
+                        <img src="${product.image}" alt="${product.name}" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" onerror="this.src='https://placehold.co/600x400/D32F2F/FFD700?text=Festive+Gift'">
+                        <span class="absolute top-3 left-3 bg-festiveRed text-gold font-bold text-xs px-3 py-1 rounded-full shadow-md border border-gold/40">
+                            ${product.tag}
+                        </span>
+                        <div class="absolute bottom-2 right-2 bg-black/60 backdrop-blur-sm text-amber-200 text-xs px-2.5 py-1 rounded-lg">
+                            <i class="fa-solid fa-quote-left text-gold mr-1"></i>${product.blessing}
+                        </div>
                     </div>
-                </div>
-            `).join('');
+                    <div class="p-5 flex flex-col flex-grow justify-between">
+                        <div>
+                            <h4 class="font-bold text-lg text-gray-800 mb-2 group-hover:text-festiveRed transition">${product.name}</h4>
+                        </div>
+                        <div class="mt-4 pt-4 border-t border-gray-100 flex items-center justify-between">
+                            <div>
+                                <span class="text-xs text-gray-500">特惠價</span>
+                                <div class="text-xl font-black text-festiveRed">NT$ ${product.price.toLocaleString()}</div>
+                            </div>
+                            <button onclick="addToCart(event, ${product.id})" class="gold-gradient hover:opacity-90 text-deepRed font-bold px-4 py-2.5 rounded-xl shadow-md flex items-center gap-2 transform active:scale-95 transition">
+                                <i class="fa-solid fa-cart-plus"></i> 加入購物車
+                            </button>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
         }
 
-        // 切換購物車抽屜顯示
-        function toggleCart() {
-            const drawer = document.getElementById('cartDrawer');
-            const overlay = document.getElementById('overlay');
-            drawer.classList.toggle('open');
-            overlay.classList.toggle('active');
+        // Filter products by category
+        function filterProducts(category) {
+            // Update active button state
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('bg-festiveRed', 'text-white', 'active-filter');
+                btn.classList.add('bg-white', 'text-gray-700');
+            });
+            event.target.classList.remove('bg-white', 'text-gray-700');
+            event.target.classList.add('bg-festiveRed', 'text-white', 'active-filter');
+
+            if (category === 'all') {
+                renderProducts(products);
+            } else {
+                const filtered = products.filter(p => p.category === category);
+                renderProducts(filtered);
+            }
         }
 
-        // 加入購物車
-        function addToCart(productId) {
+        // Add to cart with spectacular New Year visual effects (Fireworks & Gold Coin/Red Packet burst)
+        function addToCart(event, productId) {
             const product = products.find(p => p.id === productId);
+            if (!product) return;
+
+            // Add item to cart or increase quantity
             const existingItem = cart.find(item => item.id === productId);
-            
             if (existingItem) {
                 existingItem.quantity += 1;
             } else {
                 cart.push({ ...product, quantity: 1 });
             }
-            
+
             updateCartUI();
-            showToast(`已將「${product.name}」加入購物車！`);
+
+            // Trigger click visual feedback position
+            const rect = event.currentTarget.getBoundingClientRect();
+            const x = rect.left + rect.width / 2;
+            const y = rect.top + rect.height / 2;
+
+            // Trigger spectacular visual animations
+            launchFireworkAt(x, y);
+            spawnFloatingCoinsAndPackets(x, y);
+            showFestiveToast(product.name, product.blessing);
         }
 
-        // 移除購物車商品
-        function removeFromCart(productId) {
-            cart = cart.filter(item => item.id !== productId);
-            updateCartUI();
-        }
+        // Update Cart UI & Badges
+        updateCartUI = function() {
+            const countBadge = document.getElementById('cartBadge');
+            const cartItemsList = document.getElementById('cartItemsList');
+            const cartItemCount = document.getElementById('cartItemCount');
+            const cartTotalPrice = document.getElementById('cartTotalPrice');
 
-        // 更新購物車介面
-        function updateCartUI() {
-            const cartCount = document.getElementById('cartCount');
-            const cartItems = document.getElementById('cartItems');
-            const totalPrice = document.getElementById('totalPrice');
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
 
-            const totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
-            cartCount.textContent = totalCount;
+            countBadge.innerText = totalItems;
+            cartItemCount.innerText = totalItems + ' 件';
+            cartTotalPrice.innerText = 'NT$ ' + totalPrice.toLocaleString();
 
             if (cart.length === 0) {
-                cartItems.innerHTML = `<p style="text-align:center; color:#999; margin-top: 2rem;">購物車目前空空如也，快去挑選年貨吧！</p>`;
-                totalPrice.textContent = `NT$ 0`;
-                return;
-            }
-
-            let sumPrice = 0;
-            cartItems.innerHTML = cart.map(item => {
-                sumPrice += item.price * item.quantity;
-                return `
-                    <div class="cart-item">
-                        <div class="cart-item-info">
-                            <h4>${item.name}</h4>
-                            <p>NT$ ${item.price.toLocaleString()} x ${item.quantity}</p>
-                        </div>
-                        <button class="remove-btn" onclick="removeFromCart(${item.id})">刪除</button>
+                cartItemsList.innerHTML = `
+                    <div class="text-center py-20 text-gray-400">
+                        <i class="fa-solid fa-basket-shopping text-6xl mb-3 text-red-200"></i>
+                        <p class="font-medium text-lg">購物車空空如也~</p>
+                        <p class="text-sm mt-1">快挑選喜氣商品，迎接好運吧！</p>
                     </div>
                 `;
-            }).join('');
-
-            totalPrice.textContent = `NT$ ${sumPrice.toLocaleString()}`;
-        }
-
-        // 提示通知
-        function showToast(text) {
-            const toast = document.getElementById('toast');
-            toast.textContent = text;
-            toast.classList.add('show');
-            setTimeout(() => {
-                toast.classList.remove('show');
-            }, 2000);
-        }
-
-        // 結帳酷炫新年特效（金幣、紅包雨、鞭炮慶祝）
-        function checkout() {
-            if (cart.length === 0) {
-                showToast("購物車是空的，無法結帳喔！");
                 return;
             }
-            
-            toggleCart(); // 關閉購物車
-            triggerNewYearFX(); // 觸發特效
-            showToast("🎉 結帳成功！恭喜發財，好運龍總來！");
-            cart = []; // 清空購物車
+
+            cartItemsList.innerHTML = '';
+            cart.forEach(item => {
+                const div = document.createElement('div');
+                div.className = 'py-3 flex items-center justify-between gap-3';
+                div.innerHTML = `
+                    <img src="${item.image}" alt="${item.name}" class="w-16 h-16 object-cover rounded-xl border border-red-200" onerror="this.src='https://placehold.co/100x100/D32F2F/FFD700?text=Item'">
+                    <div class="flex-grow">
+                        <h5 class="font-bold text-sm text-gray-800 line-clamp-1">${item.name}</h5>
+                        <div class="text-festiveRed font-bold text-sm mt-0.5">NT$ ${item.price.toLocaleString()}</div>
+                        <div class="flex items-center space-x-2 mt-1">
+                            <button onclick="updateQuantity(${item.id}, -1)" class="w-6 h-6 bg-gray-100 hover:bg-red-100 text-gray-700 rounded-md font-bold flex items-center justify-center transition">-</button>
+                            <span class="text-sm font-bold w-6 text-center">${item.quantity}</span>
+                            <button onclick="updateQuantity(${item.id}, 1)" class="w-6 h-6 bg-gray-100 hover:bg-red-100 text-gray-700 rounded-md font-bold flex items-center justify-center transition">+</button>
+                        </div>
+                    </div>
+                    <button onclick="removeFromCart(${item.id})" class="text-gray-400 hover:text-festiveRed p-2 transition">
+                        <i class="fa-solid fa-trash-can"></i>
+                    </button>
+                `;
+                cartItemsList.appendChild(div);
+            });
+        }
+
+        // Update item quantity in cart
+        function updateQuantity(productId, change) {
+            const item = cart.find(i => i.id === productId);
+            if (!item) return;
+            item.quantity += change;
+            if (item.quantity <= 0) {
+                cart = cart.filter(i => i.id !== productId);
+            }
             updateCartUI();
         }
 
-        function triggerNewYearFX() {
-            const fxContainer = document.getElementById('fxContainer');
-            fxContainer.style.display = 'block';
-            fxContainer.innerHTML = '';
-
-            const symbols = ['🧧', '🪙', '✨', '🏮', '🧨', '💰', '🌸'];
-            const count = 50; // 特效物件數量
-
-            for (let i = 0; i < count; i++) {
-                const item = document.createElement('div');
-                item.className = 'falling-item';
-                item.textContent = symbols[Math.floor(Math.random() * symbols.length)];
-                
-                // 隨機掉落位置、大小與時間
-                item.style.left = Math.random() * 100 + 'vw';
-                item.style.animationDuration = (Math.random() * 2 + 2) + 's';
-                item.style.animationDelay = (Math.random() * 1) + 's';
-                item.style.fontSize = (Math.random() * 1.5 + 1.2) + 'rem';
-                
-                fxContainer.appendChild(item);
-            }
-
-            // 動畫結束後隱藏特效容器
-            setTimeout(() => {
-                fxContainer.style.display = 'none';
-                fxContainer.innerHTML = '';
-            }, 4500);
+        // Remove item from cart
+        function removeFromCart(productId) {
+            cart = cart.filter(i => i.id !== productId);
+            updateCartUI();
         }
 
-        // 頁面載入初始化
-        window.onload = () => {
-            renderProducts();
-        };
+        // Toggle Cart Sidebar
+        function toggleCart() {
+            const sidebar = document.getElementById('cartSidebar');
+            const overlay = document.getElementById('cartOverlay');
+            const isOpen = !sidebar.classList.contains('translate-x-full');
+
+            if (isOpen) {
+                sidebar.classList.add('translate-x-full');
+                overlay.classList.add('opacity-0');
+                setTimeout(() => overlay.classList.add('hidden'), 300);
+            } else {
+                overlay.classList.remove('hidden');
+                setTimeout(() => overlay.classList.remove('opacity-0'), 10);
+                sidebar.classList.remove('translate-x-full');
+            }
+        }
+
+        // Checkout success alert simulation
+        function checkout() {
+            if (cart.length === 0) {
+                showFestiveToast('購物車是空的', '請先挑選喜氣年節好物！');
+                return;
+            }
+            
+            triggerMassiveBlessing();
+            showFestiveToast('🎉 恭喜完成結帳！', '財神爺已敲門，祝您新春大吉大利、萬事如意！');
+            cart = [];
+            updateCartUI();
+            toggleCart();
+        }
+
+        // Festive Toast Notification
+        function showFestiveToast(title, subtitle) {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            toast.className = 'bg-deepRed text-gold border-2 border-gold px-5 py-4 rounded-2xl shadow-2xl flex items-center space-x-3 transform translate-y-10 opacity-0 transition-all duration-300 max-w-sm';
+            toast.innerHTML = `
+                <div class="text-3xl animate-bounce">🧧</div>
+                <div>
+                    <h6 class="font-bold text-base text-white">${title}</h6>
+                    <p class="text-xs text-amber-200 mt-0.5">${subtitle}</p>
+                </div>
+            `;
+            container.appendChild(toast);
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-10', 'opacity-0');
+            }, 50);
+
+            setTimeout(() => {
+                toast.classList.add('translate-y-10', 'opacity-0');
+                setTimeout(() => toast.remove(), 300);
+            }, 3500);
+        }
+
+        // Gold Coin and Red Packet Burst animation at coordinates
+        function spawnFloatingCoinsAndPackets(startX, startY) {
+            const icons = ['🧧', '🪙', '🏮', '✨', '🍊', '💰'];
+            const count = 12;
+
+            for (let i = 0; i < count; i++) {
+                const el = document.createElement('div');
+                el.innerText = icons[Math.floor(Math.random() * icons.length)];
+                el.className = 'fixed z-50 text-2xl pointer-events-none select-none';
+                
+                const angle = Math.random() * Math.PI * 2;
+                const distance = 60 + Math.random() * 120;
+                const targetX = startX + Math.cos(angle) * distance;
+                const targetY = startY + Math.sin(angle) * distance;
+
+                el.style.left = startX + 'px';
+                el.style.top = startY + 'px';
+                document.body.appendChild(el);
+
+                el.style.transition = 'all 0.8s cubic-bezier(0.15, 0.85, 0.35, 1)';
+                
+                setTimeout(() => {
+                    el.style.transform = `translate(${targetX - startX}px, ${targetY - startY}px) scale(${1 + Math.random()})`;
+                    el.style.opacity = '0';
+                }, 20);
+
+                setTimeout(() => el.remove(), 800);
+            }
+        }
+
+        // Fireworks canvas animation setup
+        let fireworksCtx, canvas;
+        let particles = [];
+
+        function initFireworksCanvas() {
+            canvas = document.getElementById('fireworksCanvas');
+            fireworksCtx = canvas.getContext('2d');
+            resizeCanvas();
+            window.addEventListener('resize', resizeCanvas);
+            requestAnimationFrame(updateFireworks);
+        }
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        function launchFireworkAt(x, y) {
+            const colors = ['#FFD700', '#FF4500', '#FF6347', '#FFD1DC', '#FF3333'];
+            const particleCount = 45;
+            for (let i = 0; i < particleCount; i++) {
+                const angle = Math.random() * Math.PI * 2;
+                const speed = 2 + Math.random() * 6;
+                particles.push({
+                    x: x,
+                    y: y,
+                    vx: Math.cos(angle) * speed,
+                    vy: Math.sin(angle) * speed,
+                    alpha: 1,
+                    color: colors[Math.floor(Math.random() * colors.length)],
+                    size: 3 + Math.random() * 3
+                });
+            }
+        }
+
+        function triggerMassiveBlessing() {
+            const centerX = window.innerWidth / 2;
+            const centerY = window.innerHeight / 2;
+            launchFireworkAt(centerX - 150, centerY - 100);
+            setTimeout(() => launchFireworkAt(centerX + 150, centerY - 80), 200);
+            setTimeout(() => launchFireworkAt(centerX, centerY - 180), 400);
+            spawnFloatingCoinsAndPackets(centerX, centerY);
+            showFestiveToast('🧨 財神到・好運大爆發！', '祝您新春如意、鴻圖大展！');
+        }
+
+        function updateFireworks() {
+            fireworksCtx.clearRect(0, 0, canvas.width, canvas.height);
+
+            particles.forEach((p, index) => {
+                p.x += p.vx;
+                p.y += p.vy;
+                p.vy += 0.08; // gravity
+                p.alpha -= 0.015;
+
+                if (p.alpha <= 0) {
+                    particles.splice(index, 1);
+                    return;
+                }
+
+                fireworksCtx.save();
+                fireworksCtx.globalAlpha = p.alpha;
+                fireworksCtx.fillStyle = p.color;
+                fireworksCtx.beginPath();
+                fireworksCtx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                fireworksCtx.fill();
+                fireworksCtx.restore();
+            });
+
+            requestAnimationFrame(updateFireworks);
+        }
     </script>
 </body>
 </html>
